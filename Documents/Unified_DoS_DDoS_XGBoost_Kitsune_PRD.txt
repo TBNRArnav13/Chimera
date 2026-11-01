@@ -1,0 +1,192 @@
+
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+Unified DoS/DDoS Detection System Using XGBoost + Kitsune
+
+1. Product Overview
+Purpose:
+To design and implement a unified, scalable DoS/DDoS detection system that combines behavior-based anomaly detection (Kitsune) with supervised classification (XGBoost). The system analyzes network log files and PCAPs, classifies malicious activity at file level, and produces console output, structured file outputs, and a detailed Markdown summary report with confidence scores.
+
+This hybrid approach maximizes detection accuracy while retaining zero-day attack detection capability.
+
+2. Problem Statement
+Standalone IDS solutions suffer from either:
+- Dependency on labeled data (supervised models)
+- High false positives (pure anomaly detection)
+
+This system merges both paradigms:
+- Kitsune detects anomalous behavior without labels
+- XGBoost performs high-precision classification when labeled patterns exist
+
+The result is a robust, future-proof DoS/DDoS detection pipeline.
+
+3. Target Users
+- Cybersecurity researchers
+- SOC analysts
+- Network security engineers
+- Academic and industry evaluators
+
+4. Supported Input Formats
+- CSV (flow-based datasets)
+- JSON (network logs, flow summaries)
+- PCAP (raw packet captures)
+
+Dataset sizes:
+- Small: ~100 MB
+- Large: up to ~7 GB
+
+Labels:
+- Optional
+- Used where available for supervised learning and evaluation
+
+5. Data Preprocessing Pipeline
+- PCAP → flow extraction using tshark/scapy
+- Feature extraction:
+  - Packet count
+  - Byte count
+  - Flow duration
+  - Packet inter-arrival time
+  - Protocol statistics
+  - Packet and byte rates
+- Unified feature schema across all formats
+- Chunk-based processing for large files
+
+6. System Architecture (Hybrid Model)
+Stage 1: Kitsune (Anomaly Detection)
+- Online learning of normal traffic behavior
+- Reconstruction error used as anomaly score
+- Flags anomalous flows
+
+Stage 2: XGBoost (Classification)
+- Applied to anomalous flows only
+- Classifies traffic as:
+  - Benign
+  - DoS
+  - DDoS
+- Outputs class probabilities
+
+7. Machine Learning Design
+
+7.1 Kitsune
+Type: Unsupervised / Semi-supervised
+Core Function:
+- Zero-day and unknown attack detection
+Outputs:
+- Anomaly score per flow
+
+7.2 XGBoost
+Type: Supervised
+Core Function:
+- High-accuracy classification
+Outputs:
+- Class label
+- Probability-based confidence score
+
+8. Training & Learning Pipeline
+Kitsune:
+- Feature mapping
+- Online baseline training
+- Threshold calibration
+
+XGBoost:
+- Training on labeled datasets
+- Hyperparameter tuning
+- Model persistence
+
+Both models are versioned independently.
+
+9. Evaluation Metrics
+Mandatory:
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
+- False Positive Rate
+
+Additional:
+- Anomaly score distribution
+- Detection latency
+
+10. File-Level Classification Logic
+Each flow is analyzed individually.
+
+Decision Logic:
+- If anomalous_flows / total_flows ≥ anomaly_threshold
+  → file marked suspicious
+
+- Suspicious flows are passed to XGBoost
+- Final file verdict:
+  - Benign
+  - DoS
+  - DDoS
+
+Default thresholds:
+- Kitsune anomaly threshold: configurable
+- File malicious ratio: 25–30%
+
+11. Outputs
+
+Console Output:
+- File verdict
+- Attack type
+- Confidence score
+- Processing time
+
+File Output Structure:
+/output
+  /benign
+  /malicious
+    /dos
+    /ddos
+
+Summary Report (Markdown):
+- File name
+- Final classification
+- Confidence score
+- Flow statistics
+- Anomaly statistics
+- Model versions and thresholds
+- Timestamp
+
+12. Confidence Scoring
+Hybrid confidence calculation:
+- Kitsune anomaly severity (normalized)
+- XGBoost class probability
+- Combined weighted confidence score
+
+13. Execution & Automation
+- Python-based modular pipeline
+- Unified Windows .bat file:
+  - Environment setup
+  - Preprocessing
+  - Kitsune detection
+  - XGBoost classification
+  - Report generation
+
+14. Scalability & Deployment
+- Local execution optimized for high-end systems
+- Docker-ready architecture
+- REST API compatibility (FastAPI)
+- Batch and real-time support
+
+15. Security & Reliability Considerations
+- Zero-day attack resilience
+- Input validation and sanitization
+- Memory-efficient processing
+- Logging and audit trails
+- Model versioning
+
+16. Acceptance Criteria
+- Processes multi-GB datasets locally
+- Detects known and unknown DoS/DDoS attacks
+- Produces correct file-level classification
+- Generates Markdown summary report
+- Outputs confidence scores
+- Executes via single command
+
+17. Success Metrics
+- High detection accuracy
+- Low false positives
+- Robust zero-day detection
+- Efficient processing time
+- Reproducibility and scalability

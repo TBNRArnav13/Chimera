@@ -1,0 +1,89 @@
+{
+    "timestamp": "2026-03-10T15:22:12.321893",
+    "total_flows_evaluated": 999998,
+    "models": {
+        "xgb": {
+            "confusion_matrix": {
+                "TP": 259532,
+                "TN": 732757,
+                "FP": 7641,
+                "FN": 68
+            },
+            "accuracy": 99.2291,
+            "FPR": 1.032,
+            "FNR": 0.0262,
+            "precision": 97.1401,
+            "recall": 99.9738
+        },
+        "kitsune": {
+            "confusion_matrix": {
+                "TP": 110215,
+                "TN": 732337,
+                "FP": 8061,
+                "FN": 149385
+            },
+            "accuracy": 84.2554,
+            "FPR": 1.0887,
+            "FNR": 57.5443,
+            "precision": 93.1846,
+            "recall": 42.4557
+        },
+        "hybrid": {
+            "confusion_matrix": {
+                "TP": 259533,
+                "TN": 724701,
+                "FP": 15697,
+                "FN": 67
+            },
+            "accuracy": 98.4236,
+            "FPR": 2.1201,
+            "FNR": 0.0258,
+            "precision": 94.2968,
+            "recall": 99.9742
+        }
+    },
+    "paper_claims_check": {
+        "Claimed_Hybrid_Accuracy_99.2%": 98.4236,
+        "Claimed_FNR_Reduction_68%": 1.53,
+        "Claimed_FPR_Reduction_79%": -94.74,
+        "Claimed_Accuracy_Improvement_0.7%": -0.81,
+        "Claimed_Hybrid_FNR_0.8%": 0.0258,
+        "Claimed_Hybrid_FPR_1.2%": 2.1201
+    },
+    "file_breakdown": {
+        "Tier2_BenignHeavy_1.csv": {
+            "total": 499999,
+            "attacks": 137640,
+            "benign": 362359,
+            "xgb_tp": 137599,
+            "xgb_tn": 358539,
+            "xgb_fp": 3820,
+            "xgb_fn": 41,
+            "kitsune_tp": 58468,
+            "kitsune_tn": 358433,
+            "kitsune_fp": 3926,
+            "kitsune_fn": 79172,
+            "hybrid_tp": 137600,
+            "hybrid_tn": 354615,
+            "hybrid_fp": 7744,
+            "hybrid_fn": 40
+        },
+        "Tier2_BenignHeavy_2.csv": {
+            "total": 499999,
+            "attacks": 121960,
+            "benign": 378039,
+            "xgb_tp": 121933,
+            "xgb_tn": 374218,
+            "xgb_fp": 3821,
+            "xgb_fn": 27,
+            "kitsune_tp": 51747,
+            "kitsune_tn": 373904,
+            "kitsune_fp": 4135,
+            "kitsune_fn": 70213,
+            "hybrid_tp": 121933,
+            "hybrid_tn": 370086,
+            "hybrid_fp": 7953,
+            "hybrid_fn": 27
+        }
+    }
+}

@@ -1,0 +1,76 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="chimera-architecture" name="Chimera Pipeline Architecture">
+    <mxGraphModel dx="1554" dy="2190" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#0066FF;fontSize=13;fontStyle=1;fontColor=#0033CC;arcSize=30;shadow=1;strokeWidth=2;" value="Input File&#xa;(CSV / PCAP)" vertex="1">
+          <mxGeometry height="50" width="190" x="305" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9933FF;fontSize=12;fontStyle=0;fontColor=#6600CC;arcSize=20;shadow=1;strokeWidth=2;" value="Input Handler&#xa;(Validation + Format Detection)" vertex="1">
+          <mxGeometry height="50" width="250" x="275" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#00CC44;fontSize=12;fontStyle=0;fontColor=#006622;backgroundOutline=1;size=0.05;shadow=1;strokeWidth=2;" value="CSV Path&#xa;(Direct Load)" vertex="1">
+          <mxGeometry height="50" width="150" x="215" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#00CC44;fontSize=12;fontStyle=0;fontColor=#006622;backgroundOutline=1;size=0.05;shadow=1;strokeWidth=2;" value="PCAP Path&#xa;(Feature Extraction)" vertex="1">
+          <mxGeometry height="50" width="160" x="435" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#FFAA00;fontSize=13;fontStyle=1;fontColor=#CC7700;arcSize=20;shadow=1;strokeWidth=2;" value="Feature Matrix&lt;br&gt;(33 Features)" vertex="1">
+          <mxGeometry height="50" width="190" x="305" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF3300;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF3300;" target="15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#FF0000;fontSize=13;fontStyle=1;fontColor=#CC0000;arcSize=20;shadow=1;strokeWidth=2;" value="XGBoost&#xa;(Supervised)" vertex="1">
+          <mxGeometry height="55" width="170" x="195" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#FF0000;fontSize=13;fontStyle=1;fontColor=#CC0000;arcSize=20;shadow=1;strokeWidth=2;" value="B-DAP (Benign-Data Alignment Processor)(Unsupervised)" vertex="1">
+          <mxGeometry height="55" width="170" x="435" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" source="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF3300;" target="17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="18" edge="1" parent="1" source="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF3300;" target="17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#FF6600;fontSize=13;fontStyle=1;fontColor=#CC4400;arcSize=20;shadow=1;strokeWidth=2;" value="Chimera decision fusion&lt;br&gt;(Fusion + Heuristics)" vertex="1">
+          <mxGeometry height="55" width="240" x="280" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" source="17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;strokeColor=#FF6600;" target="20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#0066FF;fontSize=13;fontStyle=1;fontColor=#0033CC;arcSize=20;shadow=1;strokeWidth=2;" value="Report Generator&#xa;(Markdown / JSON / Logs)" vertex="1">
+          <mxGeometry height="55" width="230" x="285" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="text;html=1;fontSize=11;fontStyle=3;align=right;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#FF0066;" value="Supervised&#xa;Classification" vertex="1">
+          <mxGeometry height="35" width="95" x="90" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="text;html=1;fontSize=11;fontStyle=3;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#FF0066;" value="Unsupervised&#xa;Anomaly Detection" vertex="1">
+          <mxGeometry height="35" width="120" x="615" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="text;html=1;fontSize=18;fontStyle=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#0055FF;" value="Chimera Detection Pipeline" vertex="1">
+          <mxGeometry height="30" width="250" x="275" y="-5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

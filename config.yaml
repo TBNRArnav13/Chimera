@@ -1,0 +1,80 @@
+# Unified DDoS Detection System Configuration
+
+# Paths
+directories:
+  models: "models/"
+  training: "training/"
+  detection: "detection/"
+  datasets: "datasets/"
+  outputs: "outputs/"
+  logs: "outputs/logs/"
+
+datasets:
+  benign: "Dataset/PolishedBenign/Polished_benign.csv"
+  dos: "Dataset/PolishedDos/"
+
+data_loading:
+  max_rows_per_file: 100000 # Limit rows per CSV to prevent OOM on local machine (e.g. 9GB TFTP file)
+  max_file_size_mb: 10240 # Allow up to 10GB files for training
+
+
+# Model Parameters
+kitsune:
+  max_autoencoder_size: 10
+  learning_rate: 0.001
+  hidden_ratio: 0.75
+  feature_map_min: 1
+  feature_map_max: 10
+  threshold_std_factor: 3.0 # Standard deviations for anomaly detection (Higher = Less Sensitive)
+  epochs: 50              # Training epochs per sub-autoencoder (was 10 with old single AE)
+  batch_size: 32          # Training batch size
+  noise_factor: 0.1       # Denoising noise injection strength (0 = disable)
+  dropout: 0.2            # Dropout rate between layers
+  
+xgboost:
+  max_depth: 6
+  learning_rate: 0.1
+  n_estimators: 100
+  objective: "binary:logistic"
+  tree_method: "auto" # Will be updated to 'gpu_hist' if GPU is detected
+
+# Feature Engineering
+# Features intersection between Benign and DoS datasets
+# Note: 'label' is the target column
+selected_features:
+  - "flow duration"
+  - "total fwd packets"
+  - "total backward packets"
+  - "total length of fwd packets"
+  - "total length of bwd packets"
+  - "fwd packet length max"
+  - "fwd packet length min"
+  - "fwd packet length mean"
+  - "fwd packet length std"
+  - "bwd packet length max"
+  - "bwd packet length min"
+  - "bwd packet length mean"
+  - "bwd packet length std"
+  - "flow bytes/s"
+  - "flow packets/s"
+  - "flow iat mean"
+  - "flow iat std"
+  - "flow iat max"
+  - "flow iat min"
+  - "fwd iat total"
+  - "fwd iat mean"
+  - "fwd iat std"
+  - "fwd iat max"
+  - "fwd iat min"
+  - "bwd iat total"
+  - "bwd iat mean"
+  - "bwd iat std"
+  - "bwd iat max"
+  - "bwd iat min"
+  - "fwd psh flags"
+  - "bwd psh flags"
+  - "fwd urg flags"
+  - "bwd urg flags"
+  
+thresholds:
+  malicious_file_ratio: 0.30 # Ratio of malicious flows to flag a file

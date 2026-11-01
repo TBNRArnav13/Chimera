@@ -1,0 +1,89 @@
+{
+    "timestamp": "2026-03-10T15:21:31.340494",
+    "total_flows_evaluated": 1000000,
+    "models": {
+        "xgb": {
+            "confusion_matrix": {
+                "TP": 998030,
+                "TN": 1590,
+                "FP": 94,
+                "FN": 286
+            },
+            "accuracy": 99.962,
+            "FPR": 5.5819,
+            "FNR": 0.0286,
+            "precision": 99.9906,
+            "recall": 99.9714
+        },
+        "kitsune": {
+            "confusion_matrix": {
+                "TP": 424172,
+                "TN": 1654,
+                "FP": 30,
+                "FN": 574144
+            },
+            "accuracy": 42.5826,
+            "FPR": 1.7815,
+            "FNR": 57.5112,
+            "precision": 99.9929,
+            "recall": 42.4888
+        },
+        "hybrid": {
+            "confusion_matrix": {
+                "TP": 998031,
+                "TN": 1563,
+                "FP": 121,
+                "FN": 285
+            },
+            "accuracy": 99.9594,
+            "FPR": 7.1853,
+            "FNR": 0.0285,
+            "precision": 99.9879,
+            "recall": 99.9715
+        }
+    },
+    "paper_claims_check": {
+        "Claimed_Hybrid_Accuracy_99.2%": 99.9594,
+        "Claimed_FNR_Reduction_68%": 0.35,
+        "Claimed_FPR_Reduction_79%": -303.33,
+        "Claimed_Accuracy_Improvement_0.7%": -0.0,
+        "Claimed_Hybrid_FNR_0.8%": 0.0285,
+        "Claimed_Hybrid_FPR_1.2%": 7.1853
+    },
+    "file_breakdown": {
+        "Tier1_PureAttack_Mix_1.csv": {
+            "total": 500000,
+            "attacks": 499165,
+            "benign": 835,
+            "xgb_tp": 499025,
+            "xgb_tn": 796,
+            "xgb_fp": 39,
+            "xgb_fn": 140,
+            "kitsune_tp": 212286,
+            "kitsune_tn": 820,
+            "kitsune_fp": 15,
+            "kitsune_fn": 286879,
+            "hybrid_tp": 499025,
+            "hybrid_tn": 782,
+            "hybrid_fp": 53,
+            "hybrid_fn": 140
+        },
+        "Tier1_PureAttack_Mix_2.csv": {
+            "total": 500000,
+            "attacks": 499151,
+            "benign": 849,
+            "xgb_tp": 499005,
+            "xgb_tn": 794,
+            "xgb_fp": 55,
+            "xgb_fn": 146,
+            "kitsune_tp": 211886,
+            "kitsune_tn": 834,
+            "kitsune_fp": 15,
+            "kitsune_fn": 287265,
+            "hybrid_tp": 499006,
+            "hybrid_tn": 781,
+            "hybrid_fp": 68,
+            "hybrid_fn": 145
+        }
+    }
+}
